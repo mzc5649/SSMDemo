@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzc.dao.IDirectoryDao">
+    <insert id="addDirectory" parameterType="com.mzc.domain.Directory">
+        insert into t_directories values(null,#{u_id},#{path},#{parent_path},#{dir},#{create_time})
+    </insert>
+    <select id="findDirectoryIdByPath" parameterType="String" resultType="com.mzc.domain.Directory">
+        select * from t_directories where path=#{path}
+    </select>
+</mapper>

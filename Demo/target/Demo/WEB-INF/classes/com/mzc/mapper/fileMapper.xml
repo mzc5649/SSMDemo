@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzc.dao.IFileDao">
+    <insert id="addFile" parameterType="com.mzc.domain.File">
+        insert into t_files values(null,#{u_id},#{d_id},#{filename},#{path},#{size},#{upload_time})
+    </insert>
+    <select id="findFileByU_idAndPath"  parameterType="com.mzc.domain.File" resultType="com.mzc.domain.File">
+        select * from t_files
+        <where>
+        <if test="u_id != null and u_id != ''">
+            and u_id=#{u_id}
+        </if>
+        <if test="path != null and path != ''">
+            and path=#{path}
+        </if>
+        </where>
+    </select>
+    <select id="findFileByU_idAndD_id"  parameterType="com.mzc.domain.File" resultType="com.mzc.domain.File">
+        select * from t_files
+        <where>
+            <if test="u_id != null and u_id != ''">
+                and u_id=#{u_id}
+            </if>
+            <if test="d_id != null and d_id != ''">
+                and d_id=#{d_id}
+            </if>
+        </where>
+    </select>
+    <select id="findFileByCustom"  parameterType="com.mzc.domain.File" resultType="com.mzc.domain.File">
+        select * from t_files
+        <where>
+            <if test="id != null and id != ''">
+                and id=#{id}
+            </if>
+            <if test="u_id != null and u_id != ''">
+                and u_id=#{u_id}
+            </if>
+            <if test="d_id != null and d_id != ''">
+                and d_id=#{d_id}
+            </if>
+            <if test="filename != null and filename != ''">
+                and filename=#{filename}
+            </if>
+            <if test="path != null and path != ''">
+                and path=#{path}
+            </if>
+        </where>
+    </select>
+    <delete id="deleteFileByCustom" parameterType="com.mzc.domain.File">
+        delete from t_files
+        <where>
+            <if test="id != null and id != ''">
+                and id=#{id}
+            </if>
+            <if test="u_id != null and u_id != ''">
+                and u_id=#{u_id}
+            </if>
+            <if test="d_id != null and d_id != ''">
+                and d_id=#{d_id}
+            </if>
+            <if test="filename != null and filename != ''">
+                and filename=#{filename}
+            </if>
+            <if test="path != null and path != ''">
+                and path=#{path}
+            </if>
+        </where>
+    </delete>
+
+</mapper>
